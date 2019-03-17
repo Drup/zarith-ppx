@@ -1,19 +1,29 @@
-opam-version: "1.2"
+opam-version: "2.0"
 name: "zarith-ppx"
 version: "dev"
 
-maintainer: "Xavier Leroy <xavier.leroy@inria.fr>"
+maintainer:   "Gabriel Radanne <drupyog@zoho.com>"
 authors: ["Gabriel Radanne"]
 
 homepage: "https://github.com/ocaml/Zarith"
 bug-reports: "https://github.com/ocaml/Zarith/issues"
 dev-repo: "git+https://github.com/ocaml/Zarith.git"
-          
+tags: ["ppx" "zarith"]          
 depends: [
-  "jbuilder" {build}
+  "ocaml" {>= "4.03.0"}
+  "dune" {build}
   "ocaml-migrate-parsetree"
   "zarith"
+  "mdx" {with-test}
 ]
-available: [ ocaml-version >= "4.03.0" ]
-
-build: ["jbuilder" "build" "-p" name "-j" jobs]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+]
+synopsis:"Literals for Zarith's arbitrary-precision integers and rationals"
+description:"
+The Zarith library implements arithmetic and logical operations over
+arbitrary-precision integers. Zarith-ppx add support for literals
+of the form '13z' and '1.5q'.
+"
