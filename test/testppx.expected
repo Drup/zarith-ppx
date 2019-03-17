@@ -74,9 +74,9 @@ numbers.
 Characters 16-20:
   1.2z;;
   ^^^^
-Error: This literal does not fit in an integer.
+Error: This literal does not fit in an integer. You should use a rational number.
 Characters 0-6:
   1.e-4z;;
   ^^^^^^
-Error: This literal does not fit in an integer.
+Error: This literal does not fit in an integer. You should use a rational number.
 

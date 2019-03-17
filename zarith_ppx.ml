@@ -106,7 +106,7 @@ let float_z s =
     | None -> error "This literal is not a valid zarith integer."
     | Some (pos, i, e, f) ->
       match make_float i e f with
-      | `Q _ -> error "This literal does not fit in an integer."
+      | `Q _ -> error "This literal does not fit in an integer. You should use a rational number."
       | `Z z -> neg_if pos "Z" z
 
 let float_q s =
