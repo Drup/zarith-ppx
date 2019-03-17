@@ -1,4 +1,4 @@
-# Zarith-ppx [![build status](buildpic)](build)
+# Zarith-ppx [![build status][buildpic]][build]
 
 [buildpic]: https://travis-ci.org/Drup/zarith-ppx.svg?branch=master
 [build]: https://travis-ci.org/Drup/zarith-ppx
