@@ -1,4 +1,4 @@
-PKG="zarith-ppx"
+PKG=zarith-ppx
 
 all: build test
 
@@ -16,7 +16,7 @@ doc:
 
 VERSION=$(shell awk '/^version:/ {print $$2}' '$(PKG).opam')
 
-REPO='git@github.com:Drup/$(PKG)'
+REPO=git@github.com:Drup/$(PKG)
 DOCDIR=.gh-pages
 
 $(DOCDIR)/.git:
