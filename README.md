@@ -22,7 +22,7 @@ Here are some examples:
 - : Q.t = -83
 ```
 
-It also raise errors for incorrect literals:
+It also raises errors for incorrect literals:
 ```ocaml
 # 1.234e2z ;;
 Characters 0-8:
@@ -31,4 +31,4 @@ Error: This literal does not fit in an integer.
 
 This package depends on vanilla Zarith, but the generated code is compatible with any cross-compiled version of Zarith such as `zarith-freestanding` and `zarith-xen`.
 
-zarith: https://github.com/ocaml/Zarith
+[zarith]: https://github.com/ocaml/Zarith
