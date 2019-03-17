@@ -13,8 +13,11 @@
 )
 
 (alias
- (name runtest)
- (deps README.md)
+ (name   runtest)
+ (deps   (:x README.md test/prelude.ml))
  (action (progn
-          (run mdx test %{deps})
-          (diff? %{deps} %{deps}.corrected))))
+           (run ocaml-mdx test
+               --prelude test/prelude.ml
+               --direction=infer-timestamp README.md)
+           (diff? README.md README.md.corrected)
+)))

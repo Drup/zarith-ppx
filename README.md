@@ -25,6 +25,7 @@ Here are some examples:
 It also raise errors for incorrect literals:
 ```ocaml
 # 1.234e2z ;;
+Characters 0-8:
 Error: This literal does not fit in an integer.
 ```
 
