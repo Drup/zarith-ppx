@@ -14,10 +14,10 @@
 
 (alias
  (name   runtest)
- (deps   (:x README.md test/prelude.ml))
+ (deps   (:x README.md) test/prelude.ml (package zarith-ppx))
  (action (progn
            (run ocaml-mdx test
                --prelude test/prelude.ml
-               --direction=infer-timestamp README.md)
-           (diff? README.md README.md.corrected)
+               --direction=infer-timestamp %{x})
+           (diff? %{x} %{x}.corrected)
 )))

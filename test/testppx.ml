@@ -2,6 +2,7 @@
 #require "zarith";;
 #install_printer Z.pp_print ;;
 #install_printer Q.pp_print ;;
+#require "zarith-ppx";;
 
 (* Integers *)
 0z ;;
