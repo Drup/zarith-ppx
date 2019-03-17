@@ -5,9 +5,9 @@ version: "0.1"
 maintainer: "Gabriel Radanne <drupyog@zoho.com>"
 authors: ["Gabriel Radanne"]
 
-homepage: "https://github.com/ocaml/Zarith"
-bug-reports: "https://github.com/ocaml/Zarith/issues"
-dev-repo: "git+https://github.com/ocaml/Zarith.git"
+homepage: "https://github.com/Drup/Zarith-ppx"
+bug-reports: "https://github.com/Drup/Zarith/issues"
+dev-repo: "git+https://github.com/Drup/Zarith-ppx.git"
 tags: ["ppx" "zarith"]          
 depends: [
   "ocaml" {>= "4.03.0"}
