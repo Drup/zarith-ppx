@@ -1,0 +1,15 @@
+;; Testing
+(executable
+ (name testmain)
+ (modules testmain)
+ (libraries zarith_ppx ocaml-migrate-parsetree))
+
+(rule
+ (targets testppx.result)
+ (deps    testppx.ml testmain.exe)
+ (action (system "TERM=dumb %{ocaml} -noinit -noprompt -ppx ./%{exe:testmain.exe} < testppx.ml 2>&1 | tail -n +16 > testppx.result")))
+
+(alias
+ (name   runtest)
+ (deps   testppx.result testppx.expected)
+ (action (run diff -dEbZBt testppx.result testppx.expected)))
