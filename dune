@@ -2,7 +2,7 @@
  (name zarith_ppx)
  (public_name zarith-ppx)
  (synopsis "Zarith PPX syntax extension")
- (modules ppx)
+ (modules zarith_ppx)
  (libraries
    compiler-libs.common
    ocaml-migrate-parsetree
