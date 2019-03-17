@@ -19,7 +19,7 @@ depends: [
 build: [
   ["dune" "subst"] {pinned}
   ["dune" "build" "-p" name "-j" jobs]
-  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test & ocaml:version > "4.03.0"}
 ]
 synopsis:"Literals for Zarith's arbitrary-precision integers and rationals"
 description:"
