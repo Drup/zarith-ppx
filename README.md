@@ -1,7 +1,7 @@
 # Zarith-ppx [![build status][buildpic]][build]
 
-[buildpic]: https://travis-ci.org/Drup/zarith-ppx.svg?branch=master
-[build]: https://travis-ci.org/Drup/zarith-ppx
+[buildpic]: https://github.com/Drup/zarith-ppx/actions/workflows/ci.yml/badge.svg
+[build]: https://github.com/Drup/zarith-ppx/actions/workflows/ci.yml
 
 The `zarith-ppx` package provides literals
 for arbitrary-precision integers and rationals
