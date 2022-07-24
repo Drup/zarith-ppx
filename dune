@@ -4,8 +4,7 @@
  (synopsis "Zarith PPX syntax extension")
  (modules zarith_ppx)
  (libraries
-   compiler-libs.common
-   ocaml-migrate-parsetree
+   ppxlib
    zarith
    str)
  (ppx_runtime_libraries zarith)
