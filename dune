@@ -12,12 +12,6 @@
  (kind ppx_rewriter)
 )
 
-(alias
- (name   runtest)
- (deps   (:x README.md) test/prelude.ml (package zarith-ppx))
- (action (progn
-           (run ocaml-mdx test
-               --prelude test/prelude.ml
-               --direction=infer-timestamp %{x})
-           (diff? %{x} %{x}.corrected)
-)))
+(mdx
+ (deps (package zarith-ppx))
+ (preludes test/prelude.ml))
