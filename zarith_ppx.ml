@@ -1,19 +1,15 @@
-open Migrate_parsetree
-
-(* Define the rewriter on OCaml 4.05 AST *)
-open Ast_405
-let ocaml_version = Versions.ocaml_405
+open Ppxlib
 
 module Stre = Str
-open Parsetree
 open Ast_helper
-module AM = Ast_mapper
 
+(* Location.error_extensionf that also wraps in Exp.extension *)
 let error ppf =
   Format.kasprintf (fun s ->
     let loc = !default_loc in
     Exp.extension ~loc @@
-    AM.extension_of_error (Location.error ~loc s))
+    Location.Error.to_extension @@
+    Location.Error.make ~loc s ~sub:[])
     ppf
 
 let mklid m lid =
@@ -118,31 +114,19 @@ let float_q s =
       | `Q q -> q
       | `Z z -> app "Q" "of_bigint" [z]
 
-(** Boilerplate to recognize z and q prefixes. *)
-
-let expr mapper expr =
-  let loc = expr.pexp_loc in
-  match expr.pexp_desc with
-  | Pexp_constant (Pconst_integer (s, Some 'z')) ->
-    with_default_loc loc @@ fun () -> integer_z s
-  | Pexp_constant (Pconst_float (s, Some 'z')) ->
-    with_default_loc loc @@ fun () -> float_z s
-
-  | Pexp_constant (Pconst_integer (s, Some 'q')) ->
-    with_default_loc loc @@ fun () -> integer_q s
-  | Pexp_constant (Pconst_float (s, Some 'q')) ->
-    with_default_loc loc @@ fun () -> float_q s
-
-  | _ -> AM.default_mapper.AM.expr mapper expr
-
-let mapper = { AM.default_mapper with AM.expr }
+let expander f loc s =
+  with_default_loc loc @@ fun () -> f s
 
 (** Register the rewriter in the driver *)
 let () =
-  Driver.register
-    ~name:"zarith-ppx"
-    ocaml_version
-    (fun _config _cookies -> mapper)
+  Driver.register_transformation
+    "zarith-ppx"
+    ~rules:[
+      Context_free.Rule.constant Integer 'z' (expander integer_z);
+      Context_free.Rule.constant Float 'z' (expander float_z);
+      Context_free.Rule.constant Integer 'q' (expander integer_q);
+      Context_free.Rule.constant Float 'q' (expander float_q);
+    ]
 
 (*
  * Copyright (c) 2019 Gabriel Radanne <drupyog@zoho.com>

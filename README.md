@@ -1,9 +1,9 @@
 # Zarith-ppx [![build status][buildpic]][build]
 
-[buildpic]: https://travis-ci.org/Drup/zarith-ppx.svg?branch=master
-[build]: https://travis-ci.org/Drup/zarith-ppx
+[buildpic]: https://github.com/Drup/zarith-ppx/actions/workflows/ci.yml/badge.svg
+[build]: https://github.com/Drup/zarith-ppx/actions/workflows/ci.yml
 
-The `zarith-ppx` package provides literals 
+The `zarith-ppx` package provides literals
 for arbitrary-precision integers and rationals
 with the [Zarith library][zarith].
 Here are some examples:
@@ -13,7 +13,7 @@ Here are some examples:
 - : Z.t = 1
 # 1.234e40z ;;
 - : Z.t = 12340000000000000000000000000000000000000
-# 0x18z ;; (* Hexadecimal *)
+# 0x18z (* Hexadecimal *);;
 - : Z.t = 24
 # 1.2q ;;
 - : Q.t = 6/5
@@ -21,15 +21,17 @@ Here are some examples:
 - : Q.t = 24500000000
 # 2.45e-5q ;;
 - : Q.t = 49/2000000
-# -0O123q ;; (* Octal *)
+# -0O123q (* Octal *);;
 - : Q.t = -83
 ```
 
 It also raises errors for incorrect literals:
+<!-- $MDX version>=4.08 -->
 ```ocaml
 # 1.234e2z ;;
-Characters 0-8:
-Error: This literal does not fit in an integer. You should use a rational number.
+Line 1, characters 1-9:
+Error: This literal does not fit in an integer. You should use a rational
+       number.
 ```
 
 This package depends on vanilla Zarith, but the generated code is compatible with any cross-compiled version of Zarith such as `zarith-freestanding` and `zarith-xen`.
